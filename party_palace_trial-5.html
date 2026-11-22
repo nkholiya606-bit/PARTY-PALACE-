@@ -141,14 +141,14 @@ main{padding:16px}.hero{padding:20px;border-radius:22px;background:linear-gradie
 <div id="giftModal" class="modal hidden" onclick="if(event.target===this)closeGifts()"><div class="sheet"><div class="row"><h2>🎁 Choose a Gift</h2><button class="secondary" style="flex:0 0 auto" onclick="closeGifts()">✕</button></div><div class="giftgrid" id="giftModalGrid"></div><p class="sub">Demo coins only. No purchase or real payment.</p></div></div>
 <div id="toast" style="position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#392956;padding:11px 16px;border-radius:30px;border:1px solid #725a91;display:none;z-index:30;font-size:13px;white-space:nowrap"></div>
 <script>
-let coins=500,joined=false,mic=false,giftsSent=0;const names=['StarHost','MoonLight','MusicFan','PartySoul','You','Open Seat','Open Seat','Open Seat','Open Seat','Open Seat'];
+let coins=5090,joined=false,mic=false,giftsSent=1000000;const names=['StarHost','MoonLight','MusicFan','PartySoul','You','Open Seat','Open Seat','Open Seat','Open Seat','Open Seat'];
 const giftData=[['🌹','Rose',10],['❤️','Heart',20],['🎂','Cake',30],['🚗','Car',50],['💎','Diamond',100],['👑','Crown',150],['🎆','Fireworks',200],['🧸','Teddy',40]];
 function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='rooms')renderSeats();if(id==='gifts')renderGiftGallery();window.scrollTo(0,0)}
 function toast(t){let el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2100)}
 function renderSeats(){let arr=names.slice();if(joined)arr[5]='You';document.getElementById('seats').innerHTML=arr.map((n,i)=>`<div class="seat ${i<6||joined&&i===5?'filled':''}"><span><span class="face">${i===0?'👑':i===1?'🌙':i===2?'🎧':n==='You'?'😎':i<6?'🙂':'＋'}</span>${n}</span></div>`).join('');document.getElementById('seatCount').textContent=joined?7:6;document.getElementById('joinBtn').textContent=joined?'Leave Room':'Join Room';}
-function joinRoom(){joined=!joined;renderSeats();toast(joined?'You joined the demo room':'You left the demo room');if(!joined){mic=false;document.getElementById('micBtn').textContent='🎤 Mic Off'}}
+function joinRoom(){joined=!joined;renderSeats();toast(joined?'You joined the real room':'You left the demo room');if(!joined){mic=false;document.getElementById('micBtn').textContent='🎤 Mic Off'}}
 function joinOther(){toast('Preview only — no real room connection')}
-function toggleMic(){if(!joined){toast('पहले Join Room दबाएँ');return}mic=!mic;document.getElementById('micBtn').textContent=mic?'🎤 Mic On':'🎤 Mic Off';toast(mic?'Demo mic enabled':'Demo mic muted')}
+function toggleMic(){if(!joined){toast('पहले Join Room दबाएँ');return}mic=!mic;document.getElementById('micBtn').textContent=mic?'🎤 Mic On':'🎤 Mic Off';toast(mic?'reak mic enabled':'real mic muted')}
 function openGifts(){document.getElementById('giftModal').classList.remove('hidden');renderGiftModal()}
 function closeGifts(){document.getElementById('giftModal').classList.add('hidden')}
 function renderGiftModal(){document.getElementById('giftModalGrid').innerHTML=giftData.map((g,i)=>`<button class="gift" onclick="sendGift(${i})"><strong>${g[0]}</strong>${g[1]}<small>${g[2]} coins</small></button>`).join('')}
