@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100d20">
+<title>PARTY PALACE — Trial Demo</title>
+<style>
+:root{--bg:#100d20;--panel:#1c1730;--panel2:#261e3d;--line:#392d59;--text:#fff;--muted:#b9b0d0;--pink:#f04fa5;--purple:#8757ff;--cyan:#56d9ef;--gold:#ffd36b;--green:#55d69a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -15%,#3b236b 0,#100d20 42%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input{font:inherit}button{border:0;cursor:pointer;color:white}.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:82px}
+header{position:sticky;top:0;z-index:5;background:#130f22ed;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff12;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--purple),var(--pink));display:grid;place-items:center;font-size:20px;box-shadow:0 6px 22px #9a50ff55}
+.coins{background:#2b2242;border:1px solid #57446f;border-radius:30px;padding:8px 12px;color:var(--gold);font-weight:800;font-size:13px}
+main{padding:16px}.hero{padding:20px;border-radius:22px;background:linear-gradient(120deg,#39206b,#8b2f7d 65%,#c24d83);box-shadow:0 12px 30px #0004;position:relative;overflow:hidden}
+.hero:after{content:"✦";position:absolute;font-size:110px;right:15px;top:-20px;opacity:.17}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:800;color:#f9d7ff}.hero h1{font-size:26px;margin:8px 0 4px}.hero p{margin:0;color:#f4dff7;font-size:13px;max-width:270px}.pill{display:inline-block;background:#ffffff20;border:1px solid #ffffff38;border-radius:30px;padding:5px 9px;font-size:11px;margin-top:14px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 12px}.section-head h2{font-size:17px;margin:0}.sub{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.tile,.panel{background:linear-gradient(150deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:17px;padding:14px}
+.tile{min-height:112px;position:relative;overflow:hidden}.tile .emoji{font-size:27px}.tile h3{margin:8px 0 3px;font-size:14px}.tile p{margin:0;color:var(--muted);font-size:11px}.tile button{position:absolute;inset:0;background:transparent}
+.room{background:linear-gradient(135deg,#302052,#1b1831);border:1px solid #544078;border-radius:18px;padding:14px;margin-bottom:10px}.roomtop{display:flex;justify-content:space-between;align-items:center}.live{color:#ff83b9;font-size:11px;font-weight:800}.room h3{margin:8px 0 3px}.seats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}.seat{aspect-ratio:1;border-radius:15px;background:#151226;border:1px dashed #665486;display:grid;place-items:center;text-align:center;font-size:10px;color:var(--muted);padding:3px}.seat.filled{border-style:solid;background:#3b2b5a;color:white}.seat .face{font-size:20px;display:block}
+.primary{background:linear-gradient(100deg,var(--purple),var(--pink));padding:10px 15px;border-radius:12px;font-weight:800}.secondary{background:#35294f;border:1px solid #5b477a;padding:9px 12px;border-radius:11px;font-weight:700}.danger{background:#5a263b;padding:9px 12px;border-radius:10px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.hidden{display:none!important}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);z-index:8;display:grid;grid-template-columns:repeat(5,1fr);background:#171227f5;backdrop-filter:blur(15px);border-top:1px solid #ffffff18;padding:8px 5px calc(8px + env(safe-area-inset-bottom))}
+.nav button{background:transparent;color:#9e94b7;font-size:10px;padding:5px 0}.nav button span{display:block;font-size:20px;margin-bottom:2px}.nav button.active{color:#ff8bc4}
+.profilehead{display:flex;gap:13px;align-items:center}.avatar{width:66px;height:66px;border-radius:22px;background:linear-gradient(135deg,#8757ff,#ef4fa5);display:grid;place-items:center;font-size:30px}.vip{color:#ffdc7b;font-weight:900}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.stat{background:#171326;border-radius:12px;padding:11px;text-align:center}.stat b{display:block;font-size:17px}.stat small{color:var(--muted);font-size:10px}
+.listitem{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #ffffff12}.listitem:last-child{border:0}
+.chatbox{height:260px;overflow:auto;background:#151126;border:1px solid var(--line);border-radius:14px;padding:12px;margin:12px 0}.msg{margin:8px 0;font-size:13px}.msg b{color:#e99cff}.chatinput{display:flex;gap:8px}.chatinput input,.field{width:100%;background:#151126;border:1px solid #51416d;border-radius:11px;padding:11px;color:white;outline:none}
+.musicrow{display:flex;align-items:center;gap:12px;padding:11px;background:#171326;border-radius:13px;margin:8px 0}.musicicon{width:42px;height:42px;border-radius:12px;background:#39295b;display:grid;place-items:center;font-size:20px}
+.modal{position:fixed;inset:0;background:#080610c9;z-index:20;display:grid;place-items:end center;padding:15px}.sheet{width:min(490px,100%);background:#211a35;border:1px solid #594676;border-radius:22px;padding:18px;max-height:85vh;overflow:auto}.sheet h2{margin:0 0 14px}.giftgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.gift{background:#302449;border:1px solid #55416f;border-radius:13px;padding:12px 4px;text-align:center}.gift strong{display:block;font-size:25px}.gift small{color:var(--gold)}
+.notice{background:#352a1d;border:1px solid #70552e;color:#ffe2a3;padding:11px;border-radius:12px;font-size:12px;line-height:1.5;margin-top:13px}
+.tag{font-size:10px;background:#44345f;color:#e4d5ff;border-radius:20px;padding:4px 8px}.muted{color:var(--muted)}.big{font-size:24px;font-weight:900}
+@media(min-width:520px){body{padding:14px 0}.app{border:1px solid #302544;border-radius:25px;overflow:hidden;min-height:calc(100vh - 28px)}.nav{bottom:14px;border-radius:0 0 25px 25px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="logo">✦</div><div>PARTY PALACE<div class="sub">SOCIAL PARTY • TRIAL</div></div></div><div class="coins">🪙 <span id="coinCount">500</span> DEMO</div></header>
+<main>
+<section id="home" class="page">
+<div class="hero"><div class="eyebrow">WELCOME TO YOUR PARTY</div><h1>Let’s Make Some Noise!</h1><p>दोस्तों से मिलो, Voice Room में जाओ और मज़ेदार पार्टी करो।</p><span class="pill">✨ TRIAL VERSION • DEMO DATA</span></div>
+<div class="section-head"><h2>Explore Party Palace</h2><span class="sub">All features</span></div>
+<div class="grid">
+<div class="tile"><div class="emoji">🎙️</div><h3>Voice Rooms</h3><p>10 seats • mic controls</p><button onclick="showPage('rooms')" aria-label="Voice Rooms"></button></div>
+<div class="tile"><div class="emoji">👑</div><h3>VIP Club</h3><p>VIP levels & badges</p><button onclick="showPage('vip')" aria-label="VIP"></button></div>
+<div class="tile"><div class="emoji">🎁</div><h3>Virtual Gifts</h3><p>Send demo gifts</p><button onclick="openGifts()" aria-label="Gifts"></button></div>
+<div class="tile"><div class="emoji">🎮</div><h3>Games</h3><p>Mini games & activities</p><button onclick="showPage('games')" aria-label="Games"></button></div>
+<div class="tile"><div class="emoji">💬</div><h3>Live Chat</h3><p>Try local chat</p><button onclick="showPage('chat')" aria-label="Chat"></button></div>
+<div class="tile"><div class="emoji">🎵</div><h3>Music</h3><p>Play a device audio file</p><button onclick="showPage('music')" aria-label="Music"></button></div>
+</div>
+<div class="section-head"><h2>Popular Rooms</h2><span class="sub">Demo rooms</span></div>
+<div class="room"><div class="roomtop"><span class="tag">🎙️ MUSIC PARTY</span><span class="live">● DEMO LIVE</span></div><h3>Night Owl Hangout</h3><div class="sub">Host: StarHost • 6/10 seats</div><button class="primary" style="margin-top:12px" onclick="showPage('rooms')">Enter Room</button></div>
+</section>
+
+<section id="rooms" class="page hidden">
+<div class="section-head"><h2>🎙️ Voice Party Rooms</h2><span class="tag">10 SEATS</span></div>
+<div class="notice">यह trial screen है। माइक बटन केवल UI demo है—दूसरे लोगों तक असली आवाज़ नहीं जाती।</div>
+<div class="room"><div class="roomtop"><span class="tag">ROOM 001 • MUSIC</span><span class="live">● DEMO ROOM</span></div><h3>Night Owl Hangout</h3><div class="sub">Host: StarHost • <span id="seatCount">6</span>/10 joined</div>
+<div class="seats" id="seats"></div>
+<div class="row"><button class="primary" id="joinBtn" onclick="joinRoom()">Join Room</button><button class="secondary" id="micBtn" onclick="toggleMic()">🎤 Mic Off</button></div>
+<div class="row" style="margin-top:9px"><button class="secondary" onclick="openGifts()">🎁 Send Gift</button><button class="secondary" onclick="showPage('chat')">💬 Room Chat</button></div></div>
+<div class="room"><div class="roomtop"><span class="tag">ROOM 002 • FRIENDS</span><span class="sub">4/10 seats</span></div><h3>Chill & Chat</h3><p class="sub">A friendly demo room</p><button class="secondary" onclick="joinOther()">Preview Room</button></div>
+</section>
+
+<section id="vip" class="page hidden">
+<div class="hero"><div class="eyebrow">PALACE MEMBERSHIP</div><h1>👑 VIP Club</h1><p>VIP badges and levels preview</p><span class="pill">DEMO ONLY • NO PURCHASE</span></div>
+<div class="panel" style="margin-top:14px"><div class="vip">✦ YOUR STATUS: VIP 0</div><h2 style="margin:8px 0">Guest Member</h2><p class="sub">इस trial में VIP levels केवल देखने के लिए हैं। कोई भुगतान नहीं होगा।</p></div>
+<div class="section-head"><h2>VIP Levels</h2></div>
+<div class="listitem"><span>🥉 VIP 1 <span class="sub">• Bronze</span></span><span class="tag">Preview</span></div>
+<div class="listitem"><span>🥈 VIP 2 <span class="sub">• Silver</span></span><span class="tag">Preview</span></div>
+<div class="listitem"><span>🥇 VIP 3 <span class="sub">• Gold</span></span><span class="tag">Preview</span></div>
+<div class="listitem"><span>💎 VIP 4 <span class="sub">• Diamond</span></span><span class="tag">Preview</span></div>
+<div class="notice">असली पैसे, खरीदारी या payment इस demo में उपलब्ध नहीं हैं।</div>
+</section>
+
+<section id="gifts" class="page hidden">
+<div class="section-head"><h2>🎁 Gift Gallery</h2><span class="sub">Demo coins only</span></div>
+<p class="sub">किसी gift को चुनकर demo animation देखो।</p><div class="giftgrid" id="giftGallery"></div>
+<div class="panel" style="margin-top:14px"><h3>Gift Activity</h3><div id="giftActivity" class="sub">अभी कोई gift नहीं भेजा गया।</div></div>
+</section>
+
+<section id="friends" class="page hidden">
+<div class="section-head"><h2>👥 Friends</h2><span class="tag">SAMPLE USERS</span></div>
+<div class="listitem"><span>🟢 StarHost <small class="sub"> • Online</small></span><button class="secondary" onclick="toast('Demo friend request sent')">Add</button></div>
+<div class="listitem"><span>🟢 MoonLight <small class="sub"> • Online</small></span><button class="secondary" onclick="toast('Demo friend request sent')">Add</button></div>
+<div class="listitem"><span>⚪ MusicFan <small class="sub"> • Offline</small></span><button class="secondary" onclick="toast('Demo friend request sent')">Add</button></div>
+<div class="notice">ये sample profiles हैं। किसी असली यूज़र से कनेक्शन नहीं होता।</div>
+</section>
+
+<section id="chat" class="page hidden">
+<div class="section-head"><h2>💬 Party Chat</h2><span class="tag">LOCAL DEMO</span></div>
+<div class="chatbox" id="chatbox"><div class="msg"><b>StarHost:</b> Welcome to Party Palace! 🎉</div><div class="msg"><b>MoonLight:</b> Hello everyone!</div><div class="msg"><b>MusicFan:</b> Let’s have fun!</div></div>
+<div class="chatinput"><input id="chatInput" maxlength="160" placeholder="अपना message लिखें..." onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div>
+<p class="sub">Messages सिर्फ इसी device के इस demo में दिखेंगे।</p>
+</section>
+
+<section id="music" class="page hidden">
+<div class="section-head"><h2>🎵 Music Player</h2><span class="tag">DEVICE FILE</span></div>
+<div class="panel"><p class="sub">अपने डिवाइस से कोई audio file चुनो। फाइल इसी browser में play होगी।</p><input class="field" id="audioFile" type="file" accept="audio/*"><div id="trackName" style="margin:12px 0">No track selected</div><audio id="audio" controls style="width:100%"></audio></div>
+<div class="section-head"><h2>Playlist</h2></div><div class="musicrow"><div class="musicicon">🎧</div><div><b>Your local music</b><div class="sub">Choose an audio file above</div></div></div>
+</section>
+
+<section id="games" class="page hidden">
+<div class="section-head"><h2>🎮 Party Games</h2><span class="tag">MINI DEMO</span></div>
+<div class="panel"><div class="big">🧠 Quick Quiz</div><p>कौन-सा instrument music में इस्तेमाल होता है?</p><div class="row"><button class="secondary" onclick="quizAnswer(false)">⚽ Football</button><button class="secondary" onclick="quizAnswer(true)">🎸 Guitar</button></div><div id="quizResult" class="sub" style="margin-top:12px"></div></div>
+<div class="panel" style="margin-top:12px"><div class="big">🎭 Emoji Guess</div><p>इन emojis से कौन-सी party activity समझ आती है?</p><div style="font-size:30px">🎤🎶🕺</div><button class="primary" onclick="document.getElementById('emojiAnswer').textContent='सही जवाब: Music Party!'">Reveal Answer</button><p id="emojiAnswer" class="sub"></p></div>
+</section>
+
+<section id="ranking" class="page hidden">
+<div class="section-head"><h2>🏆 Weekly Ranking</h2><span class="tag">SAMPLE</span></div>
+<div class="listitem"><b>1. 👑 StarHost</b><span class="vip">12,500 pts</span></div>
+<div class="listitem"><b>2. 🌙 MoonLight</b><span>9,800 pts</span></div>
+<div class="listitem"><b>3. 🎵 MusicFan</b><span>7,250 pts</span></div>
+<div class="listitem"><b>4. ✨ You</b><span>500 pts</span></div>
+<p class="sub">सभी scores demo values हैं।</p>
+</section>
+
+<section id="profile" class="page hidden">
+<div class="section-head"><h2>👤 My Profile</h2><span class="tag">DEMO ACCOUNT</span></div>
+<div class="panel"><div class="profilehead"><div class="avatar">😎</div><div><h2 style="margin:0">Palace User</h2><div class="sub">ID: PP-100086</div><div class="vip">✦ Guest • Level 1</div></div></div><div class="statgrid"><div class="stat"><b>500</b><small>Demo Coins</small></div><div class="stat"><b>1</b><small>Level</small></div><div class="stat"><b>0</b><small>Gifts sent</small></div></div></div>
+<div class="listitem"><span>🛡️ Privacy & Safety</span><span class="tag">Preview</span></div><div class="listitem"><span>🚫 Blocked users</span><span class="sub">0</span></div><div class="listitem"><span>⚙️ Settings</span><button class="secondary" onclick="toast('Settings preview')">Open</button></div>
+</section>
+
+<section id="admin" class="page hidden">
+<div class="section-head"><h2>🛡️ Super Admin</h2><span class="tag">DEMO PANEL</span></div>
+<div class="notice">यह admin preview है, सुरक्षित असली admin login या server controls नहीं हैं।</div>
+<div class="statgrid"><div class="stat"><b>128</b><small>Sample Users</small></div><div class="stat"><b>12</b><small>Rooms</small></div><div class="stat"><b>3</b><small>Reports</small></div></div>
+<div class="listitem"><span>👥 User Management</span><button class="secondary" onclick="toast('Sample user list')">View</button></div>
+<div class="listitem"><span>🎙️ Room Management</span><button class="secondary" onclick="toast('Room controls preview')">View</button></div>
+<div class="listitem"><span>🚩 Reports & Safety</span><button class="secondary" onclick="toast('No real reports in demo')">View</button></div>
+<div class="listitem"><span>🎵 Music Management</span><button class="secondary" onclick="toast('Music tools preview')">View</button></div>
+</section>
+</main>
+<nav class="nav">
+<button class="active" data-page="home" onclick="showPage('home',this)"><span>⌂</span>Home</button>
+<button data-page="rooms" onclick="showPage('rooms',this)"><span>🎙️</span>Rooms</button>
+<button data-page="gifts" onclick="showPage('gifts',this)"><span>🎁</span>Gifts</button>
+<button data-page="friends" onclick="showPage('friends',this)"><span>👥</span>Friends</button>
+<button data-page="profile" onclick="showPage('profile',this)"><span>👤</span>Profile</button>
+</nav>
+</div>
+<div id="giftModal" class="modal hidden" onclick="if(event.target===this)closeGifts()"><div class="sheet"><div class="row"><h2>🎁 Choose a Gift</h2><button class="secondary" style="flex:0 0 auto" onclick="closeGifts()">✕</button></div><div class="giftgrid" id="giftModalGrid"></div><p class="sub">Demo coins only. No purchase or real payment.</p></div></div>
+<div id="toast" style="position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#392956;padding:11px 16px;border-radius:30px;border:1px solid #725a91;display:none;z-index:30;font-size:13px;white-space:nowrap"></div>
+<script>
+let coins=500,joined=false,mic=false,giftsSent=0;const names=['StarHost','MoonLight','MusicFan','PartySoul','You','Open Seat','Open Seat','Open Seat','Open Seat','Open Seat'];
+const giftData=[['🌹','Rose',10],['❤️','Heart',20],['🎂','Cake',30],['🚗','Car',50],['💎','Diamond',100],['👑','Crown',150],['🎆','Fireworks',200],['🧸','Teddy',40]];
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='rooms')renderSeats();if(id==='gifts')renderGiftGallery();window.scrollTo(0,0)}
+function toast(t){let el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2100)}
+function renderSeats(){let arr=names.slice();if(joined)arr[5]='You';document.getElementById('seats').innerHTML=arr.map((n,i)=>`<div class="seat ${i<6||joined&&i===5?'filled':''}"><span><span class="face">${i===0?'👑':i===1?'🌙':i===2?'🎧':n==='You'?'😎':i<6?'🙂':'＋'}</span>${n}</span></div>`).join('');document.getElementById('seatCount').textContent=joined?7:6;document.getElementById('joinBtn').textContent=joined?'Leave Room':'Join Room';}
+function joinRoom(){joined=!joined;renderSeats();toast(joined?'You joined the demo room':'You left the demo room');if(!joined){mic=false;document.getElementById('micBtn').textContent='🎤 Mic Off'}}
+function joinOther(){toast('Preview only — no real room connection')}
+function toggleMic(){if(!joined){toast('पहले Join Room दबाएँ');return}mic=!mic;document.getElementById('micBtn').textContent=mic?'🎤 Mic On':'🎤 Mic Off';toast(mic?'Demo mic enabled':'Demo mic muted')}
+function openGifts(){document.getElementById('giftModal').classList.remove('hidden');renderGiftModal()}
+function closeGifts(){document.getElementById('giftModal').classList.add('hidden')}
+function renderGiftModal(){document.getElementById('giftModalGrid').innerHTML=giftData.map((g,i)=>`<button class="gift" onclick="sendGift(${i})"><strong>${g[0]}</strong>${g[1]}<small>${g[2]} coins</small></button>`).join('')}
+function renderGiftGallery(){document.getElementById('giftGallery').innerHTML=giftData.map((g,i)=>`<button class="gift" onclick="sendGift(${i})"><strong>${g[0]}</strong>${g[1]}<small>${g[2]} coins</small></button>`).join('')}
+function sendGift(i){let g=giftData[i];if(coins<g[2]){toast('Demo coins कम हैं');return}coins-=g[2];giftsSent++;document.getElementById('coinCount').textContent=coins;document.getElementById('giftActivity').textContent=`You sent ${g[0]} ${g[1]}!`;closeGifts();toast(`${g[0]} ${g[1]} sent! ✨`);document.getElementById('giftActivity').textContent=`You sent ${g[0]} ${g[1]} • Demo animation ✨`}
+function sendChat(){let input=document.getElementById('chatInput'),v=input.value.trim();if(!v)return;let box=document.getElementById('chatbox'),d=document.createElement('div');d.className='msg';let b=document.createElement('b');b.textContent='You: ';d.appendChild(b);d.appendChild(document.createTextNode(v));box.appendChild(d);box.scrollTop=box.scrollHeight;input.value=''}
+function quizAnswer(ok){document.getElementById('quizResult').textContent=ok?'Correct! Guitar is an instrument. 🎉':'Try again! Think of a musical instrument.'}
+document.getElementById('audioFile').addEventListener('change',e=>{let f=e.target.files[0];if(!f)return;let url=URL.createObjectURL(f);let a=document.getElementById('audio');a.src=url;document.getElementById('trackName').textContent=f.name;a.play().catch(()=>{})});
+renderSeats();renderGiftGallery();
+</script>
+</body></html>
